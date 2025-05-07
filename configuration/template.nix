@@ -7,9 +7,14 @@ in
   
   users.users.${user} = {
     isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "kvm"
+    ];
+    initialPassword = "nixcademy";
     openssh.authorizedKeys.keys = [ publickey ];
   };
-
 
   networking = lib.mkIf enableWifi {
     networkmanager.wifi.backend = "iwd";
