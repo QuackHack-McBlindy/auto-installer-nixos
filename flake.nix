@@ -62,6 +62,10 @@
         };
         nixosConfigurations.installed = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = {
+            inherit (inputs.self) secrets;
+            __impure = true;
+          };
           modules = [ ./configuration/configuration.nix ];
         };
       };
