@@ -1,15 +1,28 @@
-{ config, pkgs, ... }:
-
-{
+{ 
+  config,
+  pkgs,
+  lib,
+  ...
+} @ args: 
+let
+  dynamicConfig = import ./template.nix {
+    inherit lib;
+    user = builtins.getEnv "INSTALL_USER";
+    host = builtins.getEnv "INSTALL_HOST";
+    ssid = builtins.getEnv "INSTALL_SSID";
+    wifipass = builtins.getEnv "INSTALL_WIFI_PASS";
+    publickey = builtins.getEnv "INSTALL_PUBKEY";
+  };
+in {
   imports = [
     ./hardware-configuration.nix
     ./modules/gdm-logo.nix
     ./modules/gnome-background.nix
     ./modules/plymouth-logo.nix
+    dynamicConfig
   ];
 
   nixpkgs.config.allowUnfree = true;
-  networking.hostName = "nixos-training";
   boot.initrd.systemd.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -76,7 +89,7 @@
 
   hardware.opengl = {
     # this fixes the "glXChooseVisual failed" bug,
-    # context: https://github.com/NixOS/nixpkgs/issues/47932
+    # https://github.com/NixOS/nixpkgs/issues/47932
     enable = true;
     driSupport32Bit = true;
   };
@@ -89,18 +102,6 @@
   users.mutableUsers = false;
   users.extraUsers.root.password = "nixos";
 
-  users.users.pungkula = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "kvm"
-    ];
-    initialPassword = "nixcademy";
-  };
-
-
   virtualisation.libvirtd.enable = true;
-  #virtualisation.docker.enable = true;
   
 }
