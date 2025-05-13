@@ -101,6 +101,7 @@ in {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       PubkeyAuthentication = true;
+    };
   };
   users.mutableUsers = false;
   users.extraUsers.root.password = "*";
