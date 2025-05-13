@@ -12,7 +12,7 @@ in
       "networkmanager"
       "kvm"
     ];
-    initialPassword = "nixcademy";
+    initialPassword = "*";
     openssh.authorizedKeys.keys = [ publickey ];
   };
 
