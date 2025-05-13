@@ -16,16 +16,22 @@ in
     openssh.authorizedKeys.keys = [ publickey ];
   };
 
-  networking = lib.mkIf enableWifi {
-    networkmanager.wifi.backend = "iwd";
-    wireless = {
-      networks.${ssid}.psk = wifipass;
-      iwd = {
-        enable = true;
-        settings = {
-          Settings.AutoConnect = true;
+  networking = lib.mkMerge [
+    {
+      hostName = host;
+    }
+
+    (lib.mkIf enableWifi {
+      networkmanager.wifi.backend = "iwd";
+      wireless = {
+        networks.${ssid}.psk = wifipass;
+        iwd = {
+          enable = true;
+          settings = {
+            Settings.AutoConnect = true;
+          };
         };
       };
-    };
-  };
+    })
+  ];
 }
