@@ -12,7 +12,7 @@ in
       "networkmanager"
       "kvm"
     ];
-    initialPassword = "*";
+    initialPassword = "";
     openssh.authorizedKeys.keys = [ publickey ];
   };
 
