@@ -100,7 +100,7 @@ in {
     settings.PermitRootLogin = "yes";
   };
   users.mutableUsers = false;
-  users.extraUsers.root.password = "nixos";
+  users.extraUsers.root.password = "*";
 
   virtualisation.libvirtd.enable = true;
   
