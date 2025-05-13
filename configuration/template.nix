@@ -3,7 +3,6 @@ let
   enableWifi = ssid != "" && wifipass != "";
 in
 {
-  networking.hostName = host;
   
   users.users.${user} = {
     isNormalUser = true;
