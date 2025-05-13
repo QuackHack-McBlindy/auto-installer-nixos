@@ -6,11 +6,10 @@
 **Warning:**  The USB will remove everything currently on disk!
 
 
-**1. Add flake input **
+**1. Add flake input**
 
 ```bash
 { 
-
     inputs.installer.url = "github:QuackHack-McBlindy/auto-installer-nixos";
 }
 ```
