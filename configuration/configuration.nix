@@ -96,7 +96,11 @@ in {
   security.sudo.wheelNeedsPassword = false;
   services.openssh = {
     enable = true;
-    settings.PermitRootLogin = "yes";
+    settings = {
+      PermitRootLogin = "yes";
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PubkeyAuthentication = true;
   };
   users.mutableUsers = false;
   users.extraUsers.root.password = "*";
