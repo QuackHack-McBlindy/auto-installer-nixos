@@ -74,7 +74,7 @@ in {
   systemd.services."getty@tty1".enable = true;
   systemd.services."autovt@tty1".enable = true;
   services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = dynamicConfig.user;
+  services.xserver.displayManager.autoLogin.user = builtins.getEnv "INSTALL_USER";
   services.xserver = {
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
