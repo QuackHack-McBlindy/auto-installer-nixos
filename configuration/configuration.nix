@@ -71,12 +71,21 @@ in {
     gnome.gnome-boxes
   ];
 
+  systemd.services."getty@tty1".enable = true;
+  systemd.services."autovt@tty1".enable = true;
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = user;
   services.xserver = {
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
     enable = true;
     libinput.enable = true;
+    layout = "se";
+    xkbVariant = "";
+
   };
+  console.keyMap = "sv-latin1";
+
 
   boot.plymouth.enable = true;
 
