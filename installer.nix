@@ -6,9 +6,6 @@ let
     system = "x86_64-linux";
     modules = [ 
       ./configuration/configuration.nix 
-      ({ config, ... }: {
-        nixpkgs.config = config.nixpkgs.config;
-      })
     ];
     inherit (config.nixpkgs) config;
   };
