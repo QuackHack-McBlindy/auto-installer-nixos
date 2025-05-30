@@ -4,10 +4,7 @@ let
  #  (at least allowUnfree) in install config.
   evaluatedSystem = import (pkgs.path + "/nixos/lib/eval-config.nix") {
     system = "x86_64-linux";
-    modules = [ 
-      ./configuration/configuration.nix 
-    ];
-    inherit (config.nixpkgs) config;
+    modules = [ ./configuration/configuration.nix ];
   };
 in
 {
